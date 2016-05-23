@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello Mari</title>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+	<script type="text/javascript" src="d3lib.js"></script>
+</head>
+<body>
+	<h2>Hi</h2>
+
+	<script src="data.js"></script>
+	<script src="p5.js"></script>
+    <script type="text/javascript">
+    //dataset.push(num) to add it to array of current data
+    //dataset.shift()
+    //update();
+
+	var dataset = [ 5, 10, 15, 20, 25 ];
+	function update() {
+		var selection = d3.select("body").selectAll("p")
+		    .data(dataset);
+		selection.enter()
+		    .append("p")
+		    .text(function(d) { return d; });
+		selection.exit()
+			.remove();
+	}
+	update();
+    </script>
+</body>
+</html>
