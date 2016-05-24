@@ -21,9 +21,8 @@ socket.on('mensaje de servidor', function(datos){
 
 socket.on('masDatos', function(data){
 	console.log(data);
-	// update d3 data
+	// update data vis by adding data from sensor to dataset used in update function 
 	// dataset.push(data);
-	// rerender
 	// update();
 	ellipse(xPos%400, data, 10, 10);
 	//next get data on view
