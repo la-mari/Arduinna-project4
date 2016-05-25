@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello Mari</title>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+	<script type="text/javascript" src="d3lib.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<button onclick = "update()">Update</button>
+	<h2>Hi</h2>
+	<script src="data.js"></script>
+<!-- 	<script src="p5.js"></script> -->
+
+	
+
+
+    <script type="text/javascript">
+    //dataset.push(num) //to add it to array of current data
+    //dataset.shift() //to remove an item
+    //update();
+
+	// var dataset = [ 25, 7, 5, 26, 11, 8, 25, 14, 23, 19,
+ //                14, 11, 22, 29, 11, 13, 12, 17, 18, 10,
+ //                24, 18, 25, 9, 3 ];
+
+ // var dataset = [];
+
+	// function update() {
+	// 	var new = svg2.selectAll("rect")
+	// 	    .data(dataset2);
+	// 	new.enter()
+	// 	    .append("rect")
+	// 	    .text(function(d) { return d; });
+	// 	new.exit()
+	// 		.remove();
+	// }
+	// update();
+
+
+//SVG PRACTICE bar chart
+	var w2 = 500;
+	var h2 = 300;
+	var barPadding = 2;
+	var dataset2 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+		var svg2 = d3.select("body")
+			.append("svg")
+			.attr("width", w2)
+			.attr("height", h2);
+
+function update(newVal){
+	dataset2.shift();
+	dataset2.push(newVal);
+	
+	// console.log(dataset2);
+	// console.log(typeof newVal)
+		svg2.selectAll("rect").remove();
+		svg2.selectAll("text").remove();
+
+// svg2 = d3.select("body")
+// 		 .append("svg")
+// 		 .attr("width", w2)
+// 		 .attr("height", h2);
+
+var rectangles = svg2.selectAll("rect")
+					 .data(dataset2);
+		// rectangles.exit().remove();
+		rectangles
+			.enter()
+			.append("rect")
+			.attr("x", function(d, i) {
+   				 return i * (w2 / dataset2.length); //tie x position of bars to number of elements in data set
+			})
+			.attr("y", function(d) {
+   				return h2 - d;  //Height minus data value
+			}) //vertical position of top of each bar
+			.attr("width", w2 / dataset2.length - barPadding)
+			.attr("height", function(d) {
+    			return d;  
+			})
+			.attr("fill", function(d) {
+    			return "rgb(0, 0, " + (d * 2) + ")";
+			});
+
+		svg2.selectAll("text")
+		   .data(dataset2)
+		   .enter()
+		   .append("text")
+		   .text(function(d) {
+        		return d;
+   			})
+		    .attr("x", function(d, i) {
+        		return i * (w2 / dataset2.length) + (w2 / dataset2.length - barPadding) / 2;
+   			})
+
+    		.attr("y", function(d) {
+        		return h2 - (d) + 14;  //15 is now 14
+   		 	})
+   			.attr("font-family", "sans-serif")
+   			.attr("font-size", "11px")
+   			.attr("fill", "white")
+   			.attr("text-anchor", "middle");
+}
+update();
+    </script>
+</body>
+</html>
