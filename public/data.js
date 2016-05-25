@@ -4,14 +4,15 @@ var socket = io();
 var xPos = 0;
 
 //listen for message from server and run function
-socket.on('mensaje de servidor', function(datos){
-	// console.log('server' + datos);
-});
+// socket.on('mensaje de servidor', function(datos){
+// 	// console.log('server' + datos);
+// });
 
 socket.on('masDatos', function(data){
-	console.log(data)
-	if(data){
-		update(Number(data));
+	console.log(data.light)
+	console.log(data.temp)
+	if(data.light){
+		update(Number(data.light));
 	};
 	
 	// console.log(data);

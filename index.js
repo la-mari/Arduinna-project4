@@ -19,17 +19,21 @@ var port = new SerialPort('/dev/tty.usbmodem1421', {  //dev/tty/usbmodem1421 is 
 port.on('open', function(){console.log('connected to arduino')});
 
 //websockets
-io.on('connection', function(socket){
-	console.log('a user connected');
-	socket.emit('mensaje de servidor', 5)
-})
+// io.on('connection', function(socket){
+// 	console.log('a user connected');
+// 	socket.emit('mensaje de servidor', 5)
+// })
 
 
 //gets data from arduino, console.logs that data
 port.on('data', function(datos){
 	// and split los datos
-	// console.log(datos.toString());
-	io.emit('masDatos', datos ) //emit 	use broadcast.io.emit
+	var newData = datos.toString().split("-")
+	var temp = newData[0]
+	var light = newData[1].replace(/(\r)/gm,"")
+	//console.log(newData)
+	console.log(temp + "degrees" + light); //logs server side
+	io.emit('masDatos', {temp: temp, light: light} ) //emit 	use broadcast.io.emit
 });
 
 // view engine setup

@@ -39,10 +39,10 @@
 	// update();
 
 
-//SVG PRACTICE bar chart
+//SVG bar chart
 	var w2 = 500;
 	var h2 = 300;
-	var barPadding = 2;
+	var barPadding = 1;
 	var dataset2 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
 		var svg2 = d3.select("body")
 			.append("svg")
@@ -73,7 +73,10 @@ var rectangles = svg2.selectAll("rect")
    				 return i * (w2 / dataset2.length); //tie x position of bars to number of elements in data set
 			})
 			.attr("y", function(d) {
-   				return h2 - d;  //Height minus data value
+   				if (d){
+   					return h2 - d;  //Height minus data value
+   				}
+   				
 			}) //vertical position of top of each bar
 			.attr("width", w2 / dataset2.length - barPadding)
 			.attr("height", function(d) {
@@ -95,7 +98,10 @@ var rectangles = svg2.selectAll("rect")
    			})
 
     		.attr("y", function(d) {
-        		return h2 - (d) + 14;  //15 is now 14
+    			if (d){
+    				return h2 - d +15; 
+    			}
+        		 
    		 	})
    			.attr("font-family", "sans-serif")
    			.attr("font-size", "11px")
