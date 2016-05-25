@@ -12,7 +12,10 @@ socket.on('masDatos', function(data){
 	console.log(data.light)
 	console.log(data.temp)
 	if(data.light){
-		update(Number(data.light));
+		update1(Number(data.light));
+	}
+	if(data.temp){
+		update2(Number(data.temp));
 	};
 	
 	// console.log(data);

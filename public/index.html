@@ -49,7 +49,7 @@
 			.attr("width", w2)
 			.attr("height", h2);
 
-function update(newVal){
+function update1(newVal){
 	dataset2.shift();
 	dataset2.push(newVal);
 	
@@ -108,7 +108,78 @@ var rectangles = svg2.selectAll("rect")
    			.attr("fill", "white")
    			.attr("text-anchor", "middle");
 }
-update();
+update1();
+
+//second sensor SVG chart
+	var w = 500;
+	var h = 500;
+	var barPadding = 1;
+	var dataset = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+		var svg = d3.select("body")
+			.append("svg")
+			.attr("width", w)
+			.attr("height", h);
+
+function update2(newVal){
+	dataset.shift();
+	dataset.push(newVal);
+	
+	// console.log(dataset2);
+	// console.log(typeof newVal)
+		svg.selectAll("rect").remove();
+		svg.selectAll("text").remove();
+
+// svg2 = d3.select("body")
+// 		 .append("svg")
+// 		 .attr("width", w2)
+// 		 .attr("height", h2);
+
+var rectangles = svg.selectAll("rect")
+					 .data(dataset);
+		// rectangles.exit().remove();
+		rectangles
+			.enter()
+			.append("rect")
+			.attr("x", function(d, i) {
+   				 return i * (w / dataset.length); //tie x position of bars to number of elements in data set
+			})
+			.attr("y", function(d) {
+   				if (d){
+   					return h - d;  //Height minus data value
+   				}
+   				
+			}) //vertical position of top of each bar
+			.attr("width", w / dataset.length - barPadding)
+			.attr("height", function(d) {
+    			return d;  
+			})
+			.attr("fill", function(d) {
+    			return "rgb(0, " + (d * 2) + ", 0)";
+			});
+
+		svg.selectAll("text")
+		   .data(dataset)
+		   .enter()
+		   .append("text")
+		   .text(function(d) {
+        		return d;
+   			})
+		    .attr("x", function(d, i) {
+        		return i * (w / dataset.length) + (w / dataset.length - barPadding) / 2;
+   			})
+
+    		.attr("y", function(d) {
+    			if (d){
+    				return h - d +15; 
+    			}
+        		 
+   		 	})
+   			.attr("font-family", "sans-serif")
+   			.attr("font-size", "11px")
+   			.attr("fill", "white")
+   			.attr("text-anchor", "middle");
+}
+update2();
     </script>
 </body>
 </html>
