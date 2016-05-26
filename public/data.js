@@ -9,15 +9,18 @@ var xPos = 0;
 // });
 
 socket.on('masDatos', function(data){
-	console.log(data.light)
+	console.log(data.slide)
 	console.log(data.temp)
+	console.log(data.light)
 	if(data.light){
-		update1(Number(data.light));
+		update1(Number(data.slide));
 	}
 	if(data.temp){
 		update2(Number(data.temp));
 	};
-	
+	if(data.light){
+		update3(Number(data.light));
+	};
 	// console.log(data);
 	// update data vis by adding data from sensor to dataset used in update function 
 	// dataset.push(data);
