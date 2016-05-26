@@ -12,6 +12,7 @@ socket.on('masDatos', function(data){
 	console.log(data.slide)
 	console.log(data.temp)
 	console.log(data.light)
+	console.log(data.joy)
 	if(data.light){
 		update1(Number(data.slide));
 	}
@@ -20,6 +21,9 @@ socket.on('masDatos', function(data){
 	};
 	if(data.light){
 		update3(Number(data.light));
+	};
+	if(data.joy){
+		update4(Number(data.joy));
 	};
 	// console.log(data);
 	// update data vis by adding data from sensor to dataset used in update function 

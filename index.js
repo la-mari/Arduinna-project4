@@ -32,10 +32,11 @@ port.on('data', function(datos){
 	var newData = datos.toString().split("-")
 	var temp = newData[0]
 	var slide = newData[1]
-	var light = newData[2].replace(/(\r)/gm,"")
-	console.log(newData)
-	console.log(temp + "degrees" + slide + "slider" + light + "lumens"); //logs server side
-	io.emit('masDatos', {temp: temp, slide: slide, light:light} ) //emit 	use broadcast.io.emit
+	var light = newData[2]
+	var joy = newData[3].replace(/(\r)/gm,"")
+	//console.log(newData)
+	console.log(temp + "degrees" + slide + "slider" + light + "lumens" + joy + "xDistance"); //logs server side
+	io.emit('masDatos', {temp: temp, slide: slide, light: light, joy: joy} ) //emit 	use broadcast.io.emit
 });
 
 // view engine setup

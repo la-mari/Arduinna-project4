@@ -129,10 +129,6 @@ function update2(newVal){
 		svg.selectAll("rect").remove();
 		svg.selectAll("text").remove();
 
-// svg2 = d3.select("body")
-// 		 .append("svg")
-// 		 .attr("width", w2)
-// 		 .attr("height", h2);
 
 var rectangles = svg.selectAll("rect")
 					 .data(dataset);
@@ -200,11 +196,6 @@ function update3(newVal){
 		svg1.selectAll("rect").remove();
 		svg1.selectAll("text").remove();
 
-// svg2 = d3.select("body")
-// 		 .append("svg")
-// 		 .attr("width", w2)
-// 		 .attr("height", h2);
-
 var rectangles = svg1.selectAll("rect")
 					 .data(dataset1);
 		// rectangles.exit().remove();
@@ -251,6 +242,77 @@ var rectangles = svg1.selectAll("rect")
    			.attr("text-anchor", "middle");
 }
 update3();
+
+//SVG bar chart for joystick xvalue
+	var w4 = 500;
+	var h4 = 300;
+	var barPadding = 1;
+	var dataset4 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+		var svg4 = d3.select("body")
+			.append("svg")
+			.attr("width", w4)
+			.attr("height", h4);
+
+function update4(newVal){
+	dataset4.shift();
+	dataset4.push(newVal);
+	
+	// console.log(dataset2);
+	// console.log(typeof newVal)
+		svg4.selectAll("rect").remove();
+		svg4.selectAll("text").remove();
+
+// svg2 = d3.select("body")
+// 		 .append("svg")
+// 		 .attr("width", w2)
+// 		 .attr("height", h2);
+
+var rectangles = svg4.selectAll("rect")
+					 .data(dataset4);
+		// rectangles.exit().remove();
+		rectangles
+			.enter()
+			.append("rect")
+			.attr("x", function(d, i) {
+   				 return i * (w4 / dataset4.length); //tie x position of bars to number of elements in data set
+			})
+			.attr("y", function(d) {
+   				if (d){
+   					return h4 - d;  //Height minus data value
+   				}
+   				
+			}) //vertical position of top of each bar
+			.attr("width", w4 / dataset4.length - barPadding)
+			.attr("height", function(d) {
+    			return d;  
+			})
+			.attr("fill", function(d) {
+    			return "rgb(0, 0, " + (d * 2) + ")";
+			});
+
+		svg4.selectAll("text")
+		   .data(dataset4)
+		   .enter()
+		   .append("text")
+		   .text(function(d) {
+        		return d;
+   			})
+		    .attr("x", function(d, i) {
+        		return i * (w4 / dataset4.length) + (w4 / dataset4.length - barPadding) / 2;
+   			})
+
+    		.attr("y", function(d) {
+    			if (d){
+    				return h4 - d +15; 
+    			}
+        		 
+   		 	})
+   			.attr("font-family", "sans-serif")
+   			.attr("font-size", "11px")
+   			.attr("fill", "white")
+   			.attr("text-anchor", "middle");
+}
+update4();
 
     </script>
 </body>
