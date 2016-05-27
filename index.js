@@ -2,6 +2,10 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var mongoose = require('mongoose');
+var logger = require( 'morgan' );
+var bodyParser = require( 'body-parser' );
+var mongoUrl = process.env.MONGO_URL //|| 'mongodb://localhost3000/';
 
 var http = require('http').Server(app);
 
@@ -18,6 +22,8 @@ var port = new SerialPort('/dev/tty.usbmodem1421', {  //dev/tty/usbmodem1421 is 
 
 port.on('open', function(){console.log('connected to arduino')});
 
+
+mongoose.connect(mongoUrl);
 //websockets
 // io.on('connection', function(socket){
 // 	console.log('a user connected');
@@ -45,6 +51,9 @@ port.on('data', function(datos){
 
 
 app.use(express.static( __dirname +'/public'));
+app.use( logger( 'dev' ) );
+app.use( bodyParser.json() );
+app.use( bodyParser.urlencoded( { extended: false } ) );
 
 app.get('/', function(req, res){
 	// console.log(path.join(__dirname,'index.html'));

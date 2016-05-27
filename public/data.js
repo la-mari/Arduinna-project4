@@ -31,5 +31,9 @@ socket.on('masDatos', function(data){
 	// update();
 	// ellipse(xPos%400, data, 10, 10);
 	//next get data on view
+
+	//if log button value is true, send post request to db
+	//first start sending data.temp, set up router
+	//receive http call and send to controller 
 })
 
