@@ -2,40 +2,44 @@ body {
   background-color: pink
 }
 
-/*.bar {
-	  float: left;
-	  width: 30px;
-	  margin-right: 20px;
-	  background-color: #F4F5F7;
-	  border: 1px solid #C5C5C5;
-}*/
+.title {
+	text-align: center;
+}
 
 div #relative1 {
-    position: relative;
-    width: 505px;
+/*    position: relative;*/
+    width: 405px;
     height: 305px;
     border: 2px solid #E6E6E6;
+    margin-left: auto;
+  	margin-right: auto;
 } 
 
 div #relative2 {
     position: relative;
-    width: 505px;
-    height: 200px;
+    width: 405px;
+    height: 205px;
     border: 2px solid #E6E6E6;
+    margin-left: auto;
+  	margin-right: auto;
 } 
 
 div #relative3 {
     position: relative;
-    width: 505px;
+    width: 405px;
     height: 205px;
     border: 2px solid #E6E6E6;
+    margin-left: auto;
+  	margin-right: auto;
 } 
 
 div #relative4 {
     position: relative;
-    width: 505px;
+    width: 405px;
     height: 305px;
     border: 2px solid #E6E6E6;
+    margin-left: auto;
+  	margin-right: auto;
 } 
 
 div.bar {
@@ -57,3 +61,4 @@ div.bar {
   top: 18px;
   left: 10px;
 }
+

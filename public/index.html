@@ -19,16 +19,18 @@
 		  <p>Collect real-time data from sensors.</p>
 		</div>
 
-		<h1>Temperature (ºF)</h1>
+
+
+		<h1 class = "title">Temperature Sensor(ºF)</h1>
 		<div id = "relative2"></div>
 
-		<h1>Slider</h1>
+		<h1 class = "title">Slider</h1>
 		<div id = "relative1"></div>
 
-		<h1>Light</h1>
+		<h1 class = "title">Light Sensor</h1>
 		<div id = "relative3"></div>
 
-		<h1>Joy Stick</h1>
+		<h1 class = "title">Joy Stick</h1>
 		<div id = "relative4"></div>
 	</div>
 </body>
@@ -37,7 +39,7 @@
     <script type="text/javascript">
 
 		//SVG bar chart for slider sensor
-			var w2 = 500;
+			var w2 = 400;
 			var h2 = 300;
 			var barPadding = 1;
 			var dataset2 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
@@ -100,7 +102,7 @@
 		update1();
 
 		//SVG chart for temp sensor
-			var w = 500;
+			var w = 400;
 			var h = 200;
 			var barPadding = 1;
 			var dataset = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
@@ -163,7 +165,7 @@
 		update2();
 
 		//SVG bar chart for light sensor
-			var w1 = 500;
+			var w1 = 400;
 			var h1 = 200;
 			var barPadding = 1;
 			var dataset1 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
@@ -189,7 +191,7 @@
 					})
 					.attr("y", function(d) {
 		   				if (d){
-		   					return h1 - (d/10);  
+		   					return h1 - (d);  
 		   				}		   				
 					}) 
 					.attr("width", w1 / dataset1.length - barPadding)
@@ -197,7 +199,7 @@
 		    			return d;  
 					})
 					.attr("fill", function(d) {
-		    			return "rgb(" + (d/4) + ", " + (d/4) + ", 0)";
+		    			return "rgb("+ d + ", " + d +  ", " + d + ")";
 					});
 
 				svg1.selectAll("text")
@@ -213,7 +215,7 @@
 
 		    		.attr("y", function(d) {
 		    			if (d){
-		    				return h1 - (d/10) +15; 
+		    				return h1 - (d) +15; 
 		    			} 
 		   		 	})
 		   			.attr("font-family", "sans-serif")
@@ -224,7 +226,7 @@
 		update3();
 
 		//SVG bar chart for joystick , tracking positive xvalue only
-			var w4 = 500;
+			var w4 = 400;
 			var h4 = 300;
 			var barPadding = 1;
 			var dataset4 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
