@@ -12,58 +12,26 @@
 
 	<div class = "container">
 		<div class="jumbotron">
-
-		  <h1>Some App..</h1>
-		  <p>...</p>
-		  <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p> -->
-
+		  <h1>Data Logger</h1>
+		  <p>Collect real-time data from sensors.</p>
 		</div>
-	<button onclick = "update()">Update</button>
-	<h1>Slider</h1>
-	<div id = "relative1">
+
+		<h1>Temperature (ºF)</h1>
+		<div id = "relative2"></div>
+
+		<h1>Slider</h1>
+		<div id = "relative1"></div>
+
+		<h1>Light</h1>
+		<div id = "relative3"></div>
+
+		<h1>Joy Stick</h1>
+		<div id = "relative4"></div>
 	</div>
-	<h1>Temperature (ºF)</h1>
-	<div id = "relative2">
-	</div>
-	<h1>Light</h1>
-	<div id = "relative3">
-	</div>
-	<h1>Joy Stick</h1>
-	<div id = "relative4">
-	</div>
-	</div>
-	
 </body>
 
-
 	<script src="data.js"></script>
-<!-- 	<script src="p5.js"></script> -->
-
-	
-
-
     <script type="text/javascript">
-		    //dataset.push(num) //to add it to array of current data
-		    //dataset.shift() //to remove an item
-		    //update();
-
-			// var dataset = [ 25, 7, 5, 26, 11, 8, 25, 14, 23, 19,
-		 //                14, 11, 22, 29, 11, 13, 12, 17, 18, 10,
-		 //                24, 18, 25, 9, 3 ];
-
-		 // var dataset = [];
-
-			// function update() {
-			// 	var new = svg2.selectAll("rect")
-			// 	    .data(dataset2);
-			// 	new.enter()
-			// 	    .append("rect")
-			// 	    .text(function(d) { return d; });
-			// 	new.exit()
-			// 		.remove();
-			// }
-			// update();
-
 
 		//SVG bar chart for slider sensor
 			var w2 = 500;
@@ -79,31 +47,24 @@
 			dataset2.shift();
 			dataset2.push(newVal);
 			
-			// console.log(dataset2);
-			// console.log(typeof newVal)
 				svg2.selectAll("rect").remove();
 				svg2.selectAll("text").remove();
 
-		// svg2 = d3.select("body")
-		// 		 .append("svg")
-		// 		 .attr("width", w2)
-		// 		 .attr("height", h2);
-
 		var rectangles = svg2.selectAll("rect")
 							 .data(dataset2);
-				// rectangles.exit().remove();
+
 				rectangles
 					.enter()
 					.append("rect")
 					.attr("x", function(d, i) {
-		   				 return i * (w2 / dataset2.length); //tie x position of bars to number of elements in data set
+		   				 return i * (w2 / dataset2.length); //Xposition of bars related to length of data array
 					})
 					.attr("y", function(d) {
 		   				if (d){
-		   					return h2 - d;  //Height minus data value
+		   					return h2 - d;  //set vertical position of bars to height of svg - data val
 		   				}
 		   				
-					}) //vertical position of top of each bar
+					}) 
 					.attr("width", w2 / dataset2.length - barPadding)
 					.attr("height", function(d) {
 		    			return d;  
@@ -126,8 +87,7 @@
 		    		.attr("y", function(d) {
 		    			if (d){
 		    				return h2 - d +15; 
-		    			}
-		        		 
+		    			} 
 		   		 	})
 		   			.attr("font-family", "sans-serif")
 		   			.attr("font-size", "11px")
@@ -136,7 +96,7 @@
 		}
 		update1();
 
-		//temp sensor SVG chart
+		//SVG chart for temp sensor
 			var w = 500;
 			var h = 200;
 			var barPadding = 1;
@@ -150,27 +110,24 @@
 			dataset.shift();
 			dataset.push(newVal);
 			
-			// console.log(dataset2);
-			// console.log(typeof newVal)
 				svg.selectAll("rect").remove();
 				svg.selectAll("text").remove();
 
 
 		var rectangles = svg.selectAll("rect")
 							 .data(dataset);
-				// rectangles.exit().remove();
+
 				rectangles
 					.enter()
 					.append("rect")
 					.attr("x", function(d, i) {
-		   				 return i * (w / dataset.length); //tie x position of bars to number of elements in data set
+		   				 return i * (w / dataset.length); 
 					})
 					.attr("y", function(d) {
 		   				if (d){
-		   					return h - d;  //Height minus data value
+		   					return h - d;  
 		   				}
-		   				
-					}) //vertical position of top of each bar
+					}) 
 					.attr("width", w / dataset.length - barPadding)
 					.attr("height", function(d) {
 		    			return d;  
@@ -193,8 +150,7 @@
 		    		.attr("y", function(d) {
 		    			if (d){
 		    				return h - d +15; 
-		    			}
-		        		 
+		    			}    		 
 		   		 	})
 		   			.attr("font-family", "sans-serif")
 		   			.attr("font-size", "11px")
@@ -217,26 +173,22 @@
 			dataset1.shift();
 			dataset1.push(newVal);
 			
-			// console.log(dataset2);
-			// console.log(typeof newVal)
 				svg1.selectAll("rect").remove();
 				svg1.selectAll("text").remove();
 
 		var rectangles = svg1.selectAll("rect")
 							 .data(dataset1);
-				// rectangles.exit().remove();
 				rectangles
 					.enter()
 					.append("rect")
 					.attr("x", function(d, i) {
-		   				 return i * (w1 / dataset1.length); //tie x position of bars to number of elements in data set
+		   				 return i * (w1 / dataset1.length); 
 					})
 					.attr("y", function(d) {
 		   				if (d){
-		   					return h1 - (d/10);  //Height minus data value
-		   				}
-		   				
-					}) //vertical position of top of each bar
+		   					return h1 - (d/10);  
+		   				}		   				
+					}) 
 					.attr("width", w1 / dataset1.length - barPadding)
 					.attr("height", function(d) {
 		    			return d;  
@@ -259,8 +211,7 @@
 		    		.attr("y", function(d) {
 		    			if (d){
 		    				return h1 - (d/10) +15; 
-		    			}
-		        		 
+		    			} 
 		   		 	})
 		   			.attr("font-family", "sans-serif")
 		   			.attr("font-size", "11px")
@@ -269,7 +220,7 @@
 		}
 		update3();
 
-		//SVG bar chart for joystick xvalue
+		//SVG bar chart for joystick , tracking positive xvalue only
 			var w4 = 500;
 			var h4 = 300;
 			var barPadding = 1;
@@ -282,32 +233,24 @@
 		function update4(newVal){
 			dataset4.shift();
 			dataset4.push(newVal);
-			
-			// console.log(dataset2);
-			// console.log(typeof newVal)
+
 				svg4.selectAll("rect").remove();
 				svg4.selectAll("text").remove();
 
-		// svg2 = d3.select("body")
-		// 		 .append("svg")
-		// 		 .attr("width", w2)
-		// 		 .attr("height", h2);
-
 		var rectangles = svg4.selectAll("rect")
 							 .data(dataset4);
-				// rectangles.exit().remove();
 				rectangles
 					.enter()
 					.append("rect")
 					.attr("x", function(d, i) {
-		   				 return i * (w4 / dataset4.length); //tie x position of bars to number of elements in data set
+		   				 return i * (w4 / dataset4.length); 
 					})
 					.attr("y", function(d) {
 		   				if (d){
-		   					return h4 - (d/2);  //Height minus data value
+		   					return h4 - (d/2); 
 		   				}
 		   				
-					}) //vertical position of top of each bar
+					}) 
 					.attr("width", w4 / dataset4.length - barPadding)
 					.attr("height", function(d) {
 		    			return d;  
@@ -326,12 +269,10 @@
 				    .attr("x", function(d, i) {
 		        		return i * (w4 / dataset4.length) + (w4 / dataset4.length - barPadding) / 2;
 		   			})
-
 		    		.attr("y", function(d) {
 		    			if (d){
 		    				return h4 - (d/2) + 15; 
-		    			}
-		        		 
+		    			}	 
 		   		 	})
 		   			.attr("font-family", "sans-serif")
 		   			.attr("font-size", "11px")

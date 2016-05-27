@@ -1,11 +1,14 @@
 var mongoose = require('mongoose');
 
 var dataSchema = mongoose.Schema({
-	type: String,
-	value: Number,
-	createdAt: Date 
-})
+	values: [{
+		date: Date,
+		reading: Number
 
-var Data = mongoose.model('Data', dataSchema);
+	}],
+	updatedAt: Date 
+});
 
-module.exports = Data;
+var Datos = mongoose.model('Data', dataSchema);
+
+module.exports = Datos;
