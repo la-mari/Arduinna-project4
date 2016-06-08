@@ -6,6 +6,7 @@ var socket = io();
 // 	// console.log('server' + datos);
 // });
 
+//get info on socket from server and pass it to update function
 socket.on('masDatos', function(data){
 	console.log(data.slide)
 	console.log(data.temp)

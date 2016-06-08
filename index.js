@@ -23,6 +23,7 @@ port.on('open', function(){console.log('connected to arduino')});
 
 var temperatureData = null;
 
+//mongo 'mongodb://localhost/sensors'
 mongoose.connect(mongoUrl, function(){
 	//Data.remove({}, function(){}); //use to remove all data
 	Data.findOne({}, function(err, result){ //find any data
@@ -47,7 +48,7 @@ mongoose.connect(mongoUrl, function(){
 // })
 
 
-//gets data from arduino
+//Gets data from arduino
 port.on('data', function(datos){
 	var newData = datos.toString().split("-")
 	//get each element from newData array and assign it to separate variable

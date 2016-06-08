@@ -43,6 +43,8 @@
 			var h2 = 300;
 			var barPadding = 1;
 			var dataset2 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+
+				//first empty svg element is created and added to dom
 				var svg2 = d3.select("div#relative1")
 					.append("svg")
 					.attr("width", w2)
@@ -55,12 +57,17 @@
 				svg2.selectAll("rect").remove();
 				svg2.selectAll("text").remove();
 
+		//create rectangles and add them to the svg
 		var rectangles = svg2.selectAll("rect")
+							//sees how many data values exist
 							 .data(dataset2);
 
 				rectangles
+					//enter returns a placeholder for each piece of data into DOM
 					.enter()
+					//inserts a rectangle to that placeholder
 					.append("rect")
+					//x and y position of bar
 					.attr("x", function(d, i) {
 		   				 return i * (w2 / dataset2.length); //Xposition of bars related to length of data array
 					})
